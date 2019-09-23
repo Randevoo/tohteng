@@ -1,42 +1,48 @@
 import React, { useEffect } from "react";
-import Form, { FormComponentProps } from "antd/lib/form";
-import { Input } from "antd";
+import {
+  Formik,
+  FormikActions,
+  FormikProps,
+  Form,
+  Field,
+  FieldProps
+} from "formik";
 
-interface Props extends FormComponentProps {
-  onSubmit: React.FormEventHandler<HTMLFormElement>;
+import { Input, Button } from "antd";
+
+interface ComponentProps {
+  onSubmit: (values: FormProps, actions: FormikActions<FormProps>) => void;
 }
 
-const SignUpForm: React.FC<Props & FormComponentProps> = ({
-  form,
-  onSubmit
-}) => {
-  useEffect(() => {
-    form.validateFields();
-  }, []);
+export interface FormProps {
+  firstName: string;
+}
 
-  const {
-    getFieldDecorator,
-    getFieldsError,
-    getFieldError,
-    isFieldTouched
-  } = form;
-
+const SignUpForm: React.FC<ComponentProps> = ({ onSubmit }) => {
   return (
     <div>
-      <Form onSubmit={onSubmit}>
-        <Form.Item label="Title">
-          {getFieldDecorator("title", {
-            rules: [
-              {
-                required: true,
-                message: "Please input the title of collection!"
-              }
-            ]
-          })(<Input></Input>)}
-        </Form.Item>
-      </Form>
+      <Formik
+        initialValues={{ firstName: "" }}
+        onSubmit={onSubmit}
+        render={(formikBag: FormikProps<FormProps>) => (
+          <Form>
+            <Field
+              name="firstName"
+              render={({ field, form }: FieldProps<FormProps>) => (
+                <div>
+                  <Input type="text" {...field} placeholder="First Name" />
+                  {form.touched.firstName &&
+                    form.errors.firstName &&
+                    form.errors.firstName}
+                </div>
+              )}
+            ></Field>
+            <button type="submit"></button>
+          </Form>
+        )}
+      ></Formik>
     </div>
   );
 };
 
-export default Form.create<Props>({ name: "signup" })(SignUpForm);
+export default SignUpForm;
