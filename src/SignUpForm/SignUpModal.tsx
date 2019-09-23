@@ -1,6 +1,6 @@
 import React, { MouseEvent, FormEvent } from "react";
 import { Modal, Button } from "antd";
-import SignUpForm, { FormProps } from "./SignUpForm";
+import SignUpForm, { FormValues } from "./SignUpForm";
 import { FormikActions } from "formik";
 
 interface Props {
@@ -9,10 +9,9 @@ interface Props {
 }
 
 const SignUpModal: React.FC<Props> = ({ isModalVisible, onCancel }) => {
-  const onSubmit = (values: FormProps, actions: FormikActions<FormProps>) => {
-    console.log({ values, actions });
+  const onSubmit = (values: FormValues) => {
+    console.log(values);
     alert(JSON.stringify(values, null, 2));
-    actions.setSubmitting(false);
   };
   return (
     <div>

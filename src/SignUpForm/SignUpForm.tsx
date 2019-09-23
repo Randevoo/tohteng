@@ -5,44 +5,52 @@ import {
   FormikProps,
   Form,
   Field,
-  FieldProps
+  FieldProps,
+  withFormik,
+  FormikErrors,
+  ErrorMessage,
+  FormikBag
 } from "formik";
+import * as Yup from "yup";
 
 import { Input, Button } from "antd";
 
 interface ComponentProps {
-  onSubmit: (values: FormProps, actions: FormikActions<FormProps>) => void;
+  onSubmit: (values: FormValues) => void;
 }
-
-export interface FormProps {
+export interface FormValues {
   firstName: string;
 }
 
-const SignUpForm: React.FC<ComponentProps> = ({ onSubmit }) => {
-  return (
-    <div>
-      <Formik
-        initialValues={{ firstName: "" }}
-        onSubmit={onSubmit}
-        render={(formikBag: FormikProps<FormProps>) => (
-          <Form>
-            <Field
-              name="firstName"
-              render={({ field, form }: FieldProps<FormProps>) => (
-                <div>
-                  <Input type="text" {...field} placeholder="First Name" />
-                  {form.touched.firstName &&
-                    form.errors.firstName &&
-                    form.errors.firstName}
-                </div>
-              )}
-            ></Field>
-            <button type="submit"></button>
-          </Form>
-        )}
-      ></Formik>
-    </div>
-  );
-};
+const InnerForm = (props: ComponentProps & FormikProps<FormValues>) => (
+  <Form>
+    <Field
+      name="firstName"
+      render={({ field, form }: FieldProps<FormValues>) => (
+        <div>
+          <Input type="text" {...field} placeholder="First Name" />
+          <ErrorMessage name="firstName"></ErrorMessage>
+        </div>
+      )}
+    ></Field>
+    <Button disabled={props.isSubmitting} htmlType="submit">
+      Submit
+    </Button>
+  </Form>
+);
 
-export default SignUpForm;
+const WrappedForm = withFormik<ComponentProps, FormValues>({
+  validationSchema: Yup.object().shape({
+    firstName: Yup.string()
+      .min(2, "Too Short!")
+      .required("Name is required")
+  }),
+  handleSubmit: (
+    values: FormValues,
+    { props }: FormikBag<ComponentProps, FormValues>
+  ) => {
+    props.onSubmit(values);
+  }
+})(InnerForm);
+
+export default WrappedForm;
