@@ -1,56 +1,65 @@
-import React, { useEffect } from "react";
-import {
-  Formik,
-  FormikActions,
-  FormikProps,
-  Form,
-  Field,
-  FieldProps,
-  withFormik,
-  FormikErrors,
-  ErrorMessage,
-  FormikBag
-} from "formik";
-import * as Yup from "yup";
+import React, { useEffect, FormEvent } from "react";
+import { Form, Input, Checkbox, message } from "antd";
+import { FormComponentProps } from "antd/lib/form";
 
-import { Input, Button } from "antd";
-
-interface ComponentProps {
-  onSubmit: (values: FormValues) => void;
-}
-export interface FormValues {
-  firstName: string;
+interface Props extends FormComponentProps {
+  onSubmit: (e: FormEvent) => void;
 }
 
-const InnerForm = (props: ComponentProps & FormikProps<FormValues>) => (
-  <Form>
-    <Field
-      name="firstName"
-      render={({ field, form }: FieldProps<FormValues>) => (
-        <div>
-          <Input type="text" {...field} placeholder="First Name" />
-          <ErrorMessage name="firstName"></ErrorMessage>
-        </div>
-      )}
-    ></Field>
-    <Button disabled={props.isSubmitting} htmlType="submit">
-      Submit
-    </Button>
-  </Form>
-);
+export const SignUpForm: React.FC<Props> = ({ form, onSubmit }) => {
+  useEffect(() => {
+    form.validateFields();
+  }, []);
 
-const WrappedForm = withFormik<ComponentProps, FormValues>({
-  validationSchema: Yup.object().shape({
-    firstName: Yup.string()
-      .min(2, "Too Short!")
-      .required("Name is required")
-  }),
-  handleSubmit: (
-    values: FormValues,
-    { props }: FormikBag<ComponentProps, FormValues>
-  ) => {
-    props.onSubmit(values);
-  }
-})(InnerForm);
+  const { getFieldDecorator, getFieldValue } = form;
 
-export default WrappedForm;
+  return (
+    <div>
+      <Form onSubmit={onSubmit}>
+        <Form.Item label="Question 1:">
+          {getFieldDecorator("q1", {
+            rules: [{ required: true, message: "Answer required" }]
+          })(<Input.TextArea rows={4} />)}
+        </Form.Item>
+        <Form.Item label="Question 2:">
+          {getFieldDecorator("q2", {
+            rules: [{ required: true, message: "Answer required" }]
+          })(<Input.TextArea rows={4} />)}
+        </Form.Item>
+        <Form.Item label="Question 3:">
+          {getFieldDecorator("q3", {
+            rules: [{ required: true, message: "Answer required" }]
+          })(<Input.TextArea rows={4} />)}
+        </Form.Item>
+        <Form.Item label="Question 4:">
+          {getFieldDecorator("q4", {
+            rules: [{ required: true, message: "Answer required" }]
+          })(<Input.TextArea rows={4} />)}
+        </Form.Item>
+        <Form.Item>
+          {getFieldDecorator("agreement", {
+            valuePropName: "checked"
+          })(<Checkbox>Sign up for our mailing list?</Checkbox>)}
+        </Form.Item>
+        {(getFieldValue("agreement") as boolean) && (
+          <Form.Item label="Email">
+            {getFieldDecorator("email", {
+              rules: [
+                {
+                  type: "Email",
+                  message: "Not valid email"
+                },
+                {
+                  required: true,
+                  message: "Email required"
+                }
+              ]
+            })(<Input />)}
+          </Form.Item>
+        )}
+      </Form>
+    </div>
+  );
+};
+
+export default Form.create<Props>({ name: "sign-up-form" })(SignUpForm);
