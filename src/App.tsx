@@ -3,7 +3,7 @@ import { Button } from "antd";
 import logo from "./logo.svg";
 import "./App.css";
 
-import Modal from "./SignUpForm/SignUpModal";
+import Modal from "./SignUpForm/SignUpForm";
 
 const App: React.FC = () => {
   const [isModalVisible, setModalVisible] = useState(false);
