@@ -1,56 +1,77 @@
-import React, { useEffect, useState } from "react";
-import { Form, Input, Checkbox, Modal } from "antd";
+import React from "react";
+import { Form, Input, Checkbox, Modal, Select } from "antd";
 import { FormComponentProps } from "antd/lib/form";
+const Option = Select.Option;
 
 interface Props extends FormComponentProps {
   isModalVisible: boolean;
   onCancel: () => void;
+  handleSubmit: () => void;
 }
 
 export const SignUpForm: React.FC<Props> = ({
   form,
   isModalVisible,
-  onCancel
+  onCancel,
+  handleSubmit
 }) => {
-  useEffect(() => {
-    form.validateFields();
-  }, []);
+  const { getFieldDecorator } = form;
 
-  const handleSubmit = () => {
-    form.validateFields((error, values) => {
-      console.log(values);
-    });
-  };
-
-  const { getFieldDecorator, getFieldValue } = form;
+  const prefixSelector = getFieldDecorator("prefix", {
+    initialValue: "65"
+  })(
+    <Select style={{ width: 70 }}>
+      <Option value="65">+65</Option>
+      <Option value="1">+1</Option>
+    </Select>
+  );
 
   return (
-    <div>
+    <>
       <Modal
-        title="Test"
+        title="Survey and Sign-up List"
         visible={isModalVisible}
         onCancel={onCancel}
         onOk={handleSubmit}
       >
         <Form>
-          <Form.Item label="Question 1:">
+          <Form.Item label="Email (Optional)">
+            {getFieldDecorator("email", {
+              rules: [
+                {
+                  type: "email",
+                  message: "Not valid email"
+                }
+              ]
+            })(<Input />)}
+          </Form.Item>
+          <Form.Item label="Phone Number (Optional)">
+            {getFieldDecorator("phone")(
+              <Input
+                type="number"
+                addonBefore={prefixSelector}
+                style={{ width: "100%" }}
+              />
+            )}
+          </Form.Item>
+          <Form.Item label="Can you foresee doing this as a full-time job?">
             {getFieldDecorator("q1", {
-              rules: [{ required: true, message: "Answer required" }]
+              rules: [{ required: true, message: "Please input your answer" }]
             })(<Input.TextArea rows={4} />)}
           </Form.Item>
-          <Form.Item label="Question 2:">
+          <Form.Item label="Are you looking for an alternative to driving for Uber/ Grab/ GoJek? Why?">
             {getFieldDecorator("q2", {
-              rules: [{ required: true, message: "Answer required" }]
+              rules: [{ required: true, message: "Please input your answer" }]
             })(<Input.TextArea rows={4} />)}
           </Form.Item>
-          <Form.Item label="Question 3:">
+          <Form.Item label="Why do you want to be a travel guide?">
             {getFieldDecorator("q3", {
-              rules: [{ required: true, message: "Answer required" }]
+              rules: [{ required: true, message: "Please input your answer" }]
             })(<Input.TextArea rows={4} />)}
           </Form.Item>
-          <Form.Item label="Question 4:">
+          <Form.Item label="Why do you think you are suitable? (There are no wrong answers!)">
             {getFieldDecorator("q4", {
-              rules: [{ required: true, message: "Answer required" }]
+              rules: [{ required: true, message: "Please input your answer" }]
             })(<Input.TextArea rows={4} />)}
           </Form.Item>
           <Form.Item>
@@ -58,25 +79,9 @@ export const SignUpForm: React.FC<Props> = ({
               valuePropName: "checked"
             })(<Checkbox>Sign up for our mailing list?</Checkbox>)}
           </Form.Item>
-          {(getFieldValue("agreement") as boolean) && (
-            <Form.Item label="Email">
-              {getFieldDecorator("email", {
-                rules: [
-                  {
-                    type: "email",
-                    message: "Not valid email"
-                  },
-                  {
-                    required: true,
-                    message: "Email required"
-                  }
-                ]
-              })(<Input />)}
-            </Form.Item>
-          )}
         </Form>
       </Modal>
-    </div>
+    </>
   );
 };
 
