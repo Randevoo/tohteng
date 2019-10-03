@@ -75,7 +75,7 @@ export const SignUpForm: React.FC<Props> = ({
             })(<Input.TextArea rows={4} />)}
           </Form.Item>
           <Form.Item>
-            {getFieldDecorator("agreement", {
+            {getFieldDecorator("mailing", {
               valuePropName: "checked"
             })(<Checkbox>Sign up for our mailing list?</Checkbox>)}
           </Form.Item>
