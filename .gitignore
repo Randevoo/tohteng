@@ -108,5 +108,5 @@ yarn-debug.log*
 yarn-error.log*
 
 # Apollo stuff
-ApolloAPI
+ApolloTypes
 schema.json

@@ -15,7 +15,11 @@
     "noEmit": true,
     "jsx": "react",
     "noImplicitAny": true,
-    "noImplicitReturns": true
+    "noImplicitReturns": true,
+    "baseUrl": ".",
+    "paths": {
+      "ApolloTypes*": ["ApolloTypes*"]
+    }
   },
   "include": ["src"],
   "typeRoots": ["node_modules/@types", "src/@types"],

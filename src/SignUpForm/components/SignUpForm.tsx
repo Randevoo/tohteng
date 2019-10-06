@@ -3,14 +3,16 @@ import { Form, Input, Checkbox, Modal, Select } from "antd";
 import { FormComponentProps } from "antd/lib/form";
 const Option = Select.Option;
 
-interface Props extends FormComponentProps {
+export interface SignUpFormProps {
   isModalVisible: boolean;
   onCancel: () => void;
   handleSubmit: () => void;
   isLoading: boolean;
 }
 
-export const SignUpForm: React.FC<Props> = ({
+interface Props extends FormComponentProps, SignUpFormProps {}
+
+const SignUpForm: React.FC<Props> = ({
   form,
   isModalVisible,
   onCancel,
