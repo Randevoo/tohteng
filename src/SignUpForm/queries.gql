@@ -1,0 +1,30 @@
+# Write your query or mutation here
+mutation PostSignUpForm(
+  $email: String
+  $phone: Float
+  $q1: String!
+  $q2: String!
+  $q3: String!
+  $q4: String!
+  $mailing: Boolean!
+) {
+  submitForm(
+    formInput: {
+      email: $email
+      phone: $phone
+      q1: $q1
+      q2: $q2
+      q3: $q3
+      q4: $q4
+      mailing: $mailing
+    }
+  ) {
+    email
+    phone
+    q1
+    q2
+    q3
+    q4
+    mailing
+  }
+}
