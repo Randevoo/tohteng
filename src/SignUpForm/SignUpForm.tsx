@@ -7,13 +7,15 @@ interface Props extends FormComponentProps {
   isModalVisible: boolean;
   onCancel: () => void;
   handleSubmit: () => void;
+  isLoading: boolean;
 }
 
 export const SignUpForm: React.FC<Props> = ({
   form,
   isModalVisible,
   onCancel,
-  handleSubmit
+  handleSubmit,
+  isLoading
 }) => {
   const { getFieldDecorator } = form;
 
@@ -33,6 +35,7 @@ export const SignUpForm: React.FC<Props> = ({
         visible={isModalVisible}
         onCancel={onCancel}
         onOk={handleSubmit}
+        confirmLoading={isLoading}
       >
         <Form>
           <Form.Item label="Email (Optional)">

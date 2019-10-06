@@ -17,5 +17,7 @@
     "noImplicitAny": true,
     "noImplicitReturns": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "typeRoots": ["node_modules/@types", "src/@types"],
+  "files": ["src/@types/gql.d.ts"]
 }
