@@ -19,7 +19,7 @@ const SignUpForm: React.FC<Props> = ({
   handleSubmit,
   isLoading
 }) => {
-  const { getFieldDecorator } = form;
+  const { getFieldDecorator, getFieldValue } = form;
 
   const prefixSelector = getFieldDecorator("prefix", {
     initialValue: "65"
@@ -29,6 +29,8 @@ const SignUpForm: React.FC<Props> = ({
       <Option value="1">+1</Option>
     </Select>
   );
+
+  const mailing = getFieldValue("mailing");
 
   return (
     <>
@@ -46,6 +48,10 @@ const SignUpForm: React.FC<Props> = ({
                 {
                   type: "email",
                   message: "Not valid email"
+                },
+                {
+                  required: mailing,
+                  message: "Email is required"
                 }
               ]
             })(<Input />)}
@@ -81,7 +87,8 @@ const SignUpForm: React.FC<Props> = ({
           </Form.Item>
           <Form.Item>
             {getFieldDecorator("mailing", {
-              valuePropName: "checked"
+              valuePropName: "checked",
+              initialValue: false
             })(<Checkbox>Sign up for our mailing list?</Checkbox>)}
           </Form.Item>
         </Form>

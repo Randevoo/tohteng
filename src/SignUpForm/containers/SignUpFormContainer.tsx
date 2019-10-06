@@ -2,11 +2,12 @@ import React, { useState, useCallback } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { FormComponentProps } from "antd/lib/form";
 import {
-  PostSignUpForm_submitForm,
+  PostSignUpForm,
   PostSignUpFormVariables
 } from "ApolloTypes/PostSignUpForm";
 import PostSignUpFormMutation from "../queries/queries.gql";
 import SignUpForm from "../components/SignUpForm";
+import { notification } from "antd";
 
 interface ContainerProps {
   setModalVisible: (isVisible: boolean) => void;
@@ -17,10 +18,22 @@ const SignUpFormContainer: React.FC<ContainerProps> = ({
   setModalVisible,
   isModalVisible
 }) => {
-  const [postSignUpForm, { data, loading, error }] = useMutation<
-    PostSignUpForm_submitForm,
+  const [postSignUpForm, { loading }] = useMutation<
+    PostSignUpForm,
     PostSignUpFormVariables
-  >(PostSignUpFormMutation);
+  >(PostSignUpFormMutation, {
+    onCompleted: ({ submitForm }) => {
+      const mailing = submitForm.mailing;
+      notification.success({
+        message: "Success!",
+        description: `Thank you for your time!${
+          mailing
+            ? " You will be notified about the upcoming events of Randevu in the upcoming weeks!"
+            : ""
+        }`
+      });
+    }
+  });
 
   const [formRef, setFormRef] = useState<FormComponentProps["form"]>();
 
@@ -48,13 +61,11 @@ const SignUpFormContainer: React.FC<ContainerProps> = ({
               mailing
             }
           });
-          console.log(data);
           setModalVisible(false);
         }
       );
     }
   };
-
   return (
     <SignUpForm
       ref={saveFormRef}
