@@ -42,8 +42,18 @@ const App: React.FC = () => {
           </p>
         </Col>
       </Row>
-      <div className="Footer"></div>
-      {/* <Button onClick={() => setModalVisible(true)}>Open Modal</Button> */}
+      <Row className="Footer">
+        <Col span={12}></Col>
+        <Col className="FooterRightCol" span={12}>
+          <span className="FooterText">
+            <b>Join Us In Our Journey</b>
+          </span>
+          <Button onClick={() => setModalVisible(true)}>
+            Help Us Complete The Sign-up Form!
+          </Button>
+        </Col>
+      </Row>
+
       <SignUpFormModal
         isModalVisible={isModalVisible}
         setModalVisible={setModalVisible}
