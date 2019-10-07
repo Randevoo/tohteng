@@ -25,7 +25,8 @@
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
     "download_schema": "apollo schema:download --endpoint=https://angjigao.herokuapp.com/ schema.json",
-    "codegen": "apollo codegen:generate --localSchemaFile=schema.json --target=typescript --includes=src/**/*.gql --tagName=gql --addTypename --outputFlat src/ApolloTypes"
+    "codegen": "apollo codegen:generate --globalTypesFile=globalTypes.ts --localSchemaFile=schema.json --target=typescript --includes=src/**/*.gql --tagName=gql --addTypename --outputFlat src/ApolloTypes",
+    "load_schema": "yarn download_schema && yarn codegen"
   },
   "eslintConfig": {
     "extends": "react-app"

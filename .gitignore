@@ -110,3 +110,4 @@ yarn-error.log*
 # Apollo stuff
 ApolloTypes
 schema.json
+globalTypes.ts

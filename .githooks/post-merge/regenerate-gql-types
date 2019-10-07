@@ -1,0 +1,4 @@
+#!/bin/bash
+rm -rf -r $GIT_DIR/src/ApolloTypes
+yarn download_schema
+yarn codegen
