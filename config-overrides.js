@@ -2,8 +2,7 @@ const path = require("path");
 const {
   override,
   fixBabelImports,
-  addWebpackModuleRule,
-  addWebpackAlias
+  addWebpackModuleRule
 } = require("customize-cra");
 
 const getModulePath = module => path.resolve(__dirname, "src", module);

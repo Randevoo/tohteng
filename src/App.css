@@ -1,22 +1,26 @@
-.App {
+.SignUpBanner {
+  width: 100%;
+}
+.InfoRow {
+  width: 100%;
+}
+
+.InfoImage {
+  width: 100%;
+}
+
+.InfoText {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.InfoCol {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  height: 500px;
 }
 
-.App-link {
-  color: #09d3ac;
+.Footer {
+  background-color: lightgray;
+  height: 500px;
 }
