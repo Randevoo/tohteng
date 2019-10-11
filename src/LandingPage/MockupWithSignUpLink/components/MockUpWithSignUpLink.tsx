@@ -12,7 +12,7 @@ const MockUpWithSignUpLink: React.FC<Props> = ({ setModalVisible }) => {
     <>
       <Row type="flex" justify="space-around" align="middle" className="Footer">
         <Col span={12}>
-          <img className="Mockup" src={MockUp}></img>
+          <img className="Mockup" src={MockUp} />
         </Col>
         <Col span={12}>
           <div style={{ display: "flex", justifyContent: "center" }}>

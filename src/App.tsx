@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Button, Row, Col } from "antd";
 
 import "./App.css";
 import SignUpBanner from "assets/SignUpBanner.jpg";
