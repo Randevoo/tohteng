@@ -21,7 +21,12 @@ const MockUpWithSignUpLink: React.FC<Props> = ({ setModalVisible }) => {
             </span>
           </div>
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <Button onClick={() => setModalVisible(true)}>
+            <Button
+              className="SignUpButton"
+              size="large"
+              icon="mail"
+              onClick={() => setModalVisible(true)}
+            >
               Help Us Complete The Sign-up Form!
             </Button>
           </div>

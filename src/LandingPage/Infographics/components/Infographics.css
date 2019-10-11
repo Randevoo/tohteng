@@ -9,11 +9,16 @@
 
 .InfoText {
   text-align: center;
+  font-size: 1.2em;
+}
+
+.InfoTitle {
+  text-align: center;
+  font-size: 1.4em;
 }
 
 .InfoCol {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 500px;
 }
