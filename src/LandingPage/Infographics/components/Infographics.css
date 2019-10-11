@@ -1,0 +1,19 @@
+.InfoRow {
+  flex: 1 0 auto;
+  height: 100%;
+}
+
+.InfoImage {
+  width: 100%;
+}
+
+.InfoText {
+  text-align: center;
+}
+
+.InfoCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 500px;
+}

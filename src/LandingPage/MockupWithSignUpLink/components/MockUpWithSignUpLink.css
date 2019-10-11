@@ -1,0 +1,16 @@
+.Footer {
+  flex: 1 0 auto;
+  height: 100%;
+}
+
+.Mockup {
+  width: 100%;
+  object-fit: contain;
+  max-height: 500px;
+}
+
+.FooterText {
+  text-align: center;
+  font-size: 3em;
+  width: 100%;
+}
