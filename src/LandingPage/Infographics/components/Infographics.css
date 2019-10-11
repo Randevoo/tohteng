@@ -1,0 +1,24 @@
+.InfoRow {
+  flex: 1 0 auto;
+  height: 100%;
+}
+
+.InfoImage {
+  width: 100%;
+}
+
+.InfoText {
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.InfoTitle {
+  text-align: center;
+  font-size: 1.4em;
+}
+
+.InfoCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

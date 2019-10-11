@@ -1,26 +1,23 @@
 import React, { useState } from "react";
-import { Button } from "antd";
+import { Button, Row, Col } from "antd";
 
-import logo from "./logo.svg";
 import "./App.css";
-
-import SignUpFormModal from "./SignUpForm";
+import SignUpBanner from "assets/SignUpBanner.jpg";
+import SignUpFormModal from "./LandingPage/SignUpForm";
+import Infographics from "./LandingPage/Infographics";
+import MockUpWithSignUpLink from "./LandingPage/MockupWithSignUpLink";
 
 const App: React.FC = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <Button onClick={() => setModalVisible(true)}>Open Modal</Button>
-        <SignUpFormModal
-          isModalVisible={isModalVisible}
-          setModalVisible={setModalVisible}
-        ></SignUpFormModal>
-      </header>
+      <img src={SignUpBanner} className="SignUpBanner" alt="logo" />
+      <Infographics />
+      <MockUpWithSignUpLink setModalVisible={setModalVisible} />
+      <SignUpFormModal
+        isModalVisible={isModalVisible}
+        setModalVisible={setModalVisible}
+      />
     </div>
   );
 };
