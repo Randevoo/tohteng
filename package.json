@@ -13,6 +13,7 @@
     "@types/react": "16.9.2",
     "@types/react-dom": "16.9.0",
     "antd": "^3.23.4",
+    "apollo": "^2.19.1",
     "apollo-boost": "^0.4.4",
     "babel-plugin-import": "^1.12.2",
     "customize-cra": "^0.7.0",
@@ -29,8 +30,8 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
-    "download_schema": "apollo schema:download --endpoint=https://angjigao.herokuapp.com/ schema.json",
-    "codegen": "apollo codegen:generate --globalTypesFile=globalTypes.ts --localSchemaFile=schema.json --target=typescript --includes=src/**/*.gql --tagName=gql --addTypename --outputFlat src/ApolloTypes",
+    "download_schema": "npx apollo schema:download --endpoint=https://angjigao.herokuapp.com/ schema.json",
+    "codegen": "npx apollo codegen:generate --globalTypesFile=globalTypes.ts --localSchemaFile=schema.json --target=typescript --includes=src/**/*.gql --tagName=gql --addTypename --outputFlat src/ApolloTypes",
     "load_schema": "yarn download_schema && yarn codegen"
   },
   "eslintConfig": {
