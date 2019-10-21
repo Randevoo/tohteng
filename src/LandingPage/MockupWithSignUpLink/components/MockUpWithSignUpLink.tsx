@@ -27,7 +27,9 @@ const MockUpWithSignUpLink: React.FC<Props> = ({ setModalVisible }) => {
               icon="mail"
               onClick={() => setModalVisible(true)}
             >
-              Help Us Complete The Sign-up Form!
+              <span className="SignUpButtonText">
+                Help Us Complete The Sign-up Form!
+              </span>
             </Button>
           </div>
         </Col>

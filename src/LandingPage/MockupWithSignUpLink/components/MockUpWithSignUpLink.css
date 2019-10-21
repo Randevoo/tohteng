@@ -11,11 +11,19 @@
 
 .FooterText {
   text-align: center;
-  font-size: 5em;
+  font-size: 5.5vw;
   width: 100%;
 }
 
 .SignUpButton:hover {
   color: lightcoral;
   border-color: lightcoral;
+}
+
+.SignUpButton {
+  max-width: 100%;
+}
+
+.SignUpButtonText {
+  font-size: 2vw;
 }
