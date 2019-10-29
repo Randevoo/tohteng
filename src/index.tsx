@@ -4,7 +4,9 @@ import "./index.css";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { Router, Switch, Route } from "react-router";
-import App from "./App";
+import { createBrowserHistory } from "history"
+import LandingPage from "./LandingPage";
+import Main from "./Trips"
 import * as serviceWorker from "./serviceWorker";
 
 const graphqlClient = new ApolloClient({
@@ -14,10 +16,13 @@ const graphqlClient = new ApolloClient({
 // Wraps the gql client on top of our app.
 const app = (
   <ApolloProvider client={graphqlClient}>
-    <Router>
+    <Router history={createBrowserHistory()}>
       <Switch>
+        <Route path="/signup">
+          <LandingPage />
+        </Route>
         <Route path="/">
-          <App />
+          <Main />
         </Route>
       </Switch>
     </Router>

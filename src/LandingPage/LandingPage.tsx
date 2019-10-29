@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
-import "./App.css";
+import "./LandingPage.css";
 import SignUpBanner from "assets/SignUpBanner.jpg";
-import SignUpFormModal from "./LandingPage/SignUpForm";
-import Infographics from "./LandingPage/Infographics";
-import MockUpWithSignUpLink from "./LandingPage/MockupWithSignUpLink";
-import { RouteComponentProps } from "react-router";
+import SignUpFormModal from "./SignUpForm";
+import Infographics from "./Infographics";
+import MockUpWithSignUpLink from "./MockupWithSignUpLink";
+import { withRouter, RouteComponentProps } from "react-router";
 
-const App: React.FC<RouteComponentProps> = () => {
+const LandingPage: React.FC<RouteComponentProps> = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   return (
     <div className="App">
@@ -22,4 +22,4 @@ const App: React.FC<RouteComponentProps> = () => {
   );
 };
 
-export default App;
+export default withRouter(LandingPage);
