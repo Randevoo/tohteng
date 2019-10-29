@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter, useHistory } from "react-router";
-import { List, Card } from "antd";
+import { List, Card, Button } from "antd";
 import "./TripTable.css";
 import { History } from "history";
 const { Meta } = Card;
@@ -23,6 +23,7 @@ const testData = (history: History) => ({
 
 const renderCard = (data: CardData) => (
   <Card
+    actions={[<Button>LOl</Button>]}
     onClick={() => {
       console.log("clicked");
       data.history.push(data.link);

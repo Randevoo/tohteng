@@ -11,11 +11,31 @@ module.exports = override(
   fixBabelImports("import", {
     libraryName: "antd",
     libraryDirectory: "es",
-    style: "css"
+    style: true
   }),
   addWebpackModuleRule({
     test: /\.gql$/,
     exclude: /node_modules/,
     loader: "graphql-tag/loader"
+  }),
+  addWebpackModuleRule({
+    test: /\.less$/,
+    use: [
+      {
+        loader: "style-loader" // creates style nodes from JS strings
+      },
+      {
+        loader: "css-loader" // translates CSS into CommonJS
+      },
+      {
+        loader: "less-loader", // compiles Less to CSS
+        options: {
+          modifyVars: {
+            "primary-color": "#e66673"
+          },
+          javascriptEnabled: true
+        }
+      }
+    ]
   })
 );
