@@ -1,1 +1,1 @@
-export { default } from "./TripTable"
+export { default } from "./TripProfile";
