@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
+import { Router, Switch, Route } from "react-router";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
@@ -13,7 +14,13 @@ const graphqlClient = new ApolloClient({
 // Wraps the gql client on top of our app.
 const app = (
   <ApolloProvider client={graphqlClient}>
-    <App />
+    <Router>
+      <Switch>
+        <Route path="/">
+          <App />
+        </Route>
+      </Switch>
+    </Router>
   </ApolloProvider>
 );
 
