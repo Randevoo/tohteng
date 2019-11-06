@@ -1,7 +1,10 @@
 import React from "react";
 import TripHeader from "./components/TripHeader";
 import TripDay from "./components/TripDay";
-import { Carousel } from "antd";
+import TripProfie from "../Profile/components/TripProfile"
+import { Carousel, Row, Col } from "antd";
+import { Icon } from "antd";
+import { Button, NavBar } from 'antd-mobile';
 
 interface Props {}
 
@@ -16,20 +19,64 @@ const testDesc =
 const Main: React.FC<Props> = () => {
   return (
     <div>
+      <NavBar
+        // leftContent="Menu"
+        // rightContent
+        mode="light"
+        icon={<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-arrow-back-512.png" className="am-icon am-icon-md" alt="" />}
+        // onLeftClick={this.handleClick}
+        className="top-nav-bar"
+        style={{ marginBottom: '3px' }}
+      >
+        {/* Randevu */}
+      </NavBar>
+      
       <Carousel autoplay>
         {testImageUrls.map(url => (
           <img src={url} alt="tripPhotos"></img>
         ))}
       </Carousel>
+
       <TripHeader
-        title={"2D1N Tokyo Shopping"}
+        title={"2D1N Japan Kyoto Shrine Hopping + Spa"}
         subtitle={"Public Tour"}
+        location={"JAPAN, KYOTO. SPA. SHRINE"}
       ></TripHeader>
+
+      <TripProfie 
+        message={"\"Hi, Hisako here. Experiece Kyoto with me, as I bring you around to hunt for hidden traditional Japanese eateries, and show you breath taking views within Kyoto. Food and Instragrammers, look out!\""} 
+        name={"Hisako Sato"}
+        age={"29"}
+        gender={"Female"}
+        languages={["Japanese", "Chinese", "English"]}
+        rating={4}
+        noOfreviews={328}
+        picture={"https://image.shutterstock.com/image-vector/default-avatar-profile-icon-grey-260nw-518740768.jpg"}
+      />
+
       <TripDay
         dayNumber={1}
         imageSource={testImageUrls[0]}
         description={testDesc}
       ></TripDay>
+
+      <TripDay
+        dayNumber={2}
+        imageSource={testImageUrls[0]}
+        description={testDesc}
+      ></TripDay>
+
+      {/* Will add location later */}
+
+      <Button>Cancellation</Button>
+      <Button>Price Breakdown</Button>
+      <Button>Contact Guide</Button>
+      <Button>Report Listing</Button>
+
+      {/* couldn't find a quick ui solution for footer, ignoring for now first  */}
+      {/* <div className="payment" style={{ position: 'fixed', height: '100%', width: '100%', top: 0 }}>
+        S$210 per pax
+      </div> */}
     </div>
   );
 };
