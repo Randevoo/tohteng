@@ -1,9 +1,7 @@
 import React from "react";
 
-import Quote from "../Quotes";
-import Profile from "../User";
-
-import "./TripProfile.less";
+import Quote from "../UserQuotes";
+import Profile from "../UserProfile/User";
 
 interface Props {
   message: string;
@@ -16,7 +14,7 @@ interface Props {
   picture: string;
 }
 
-const TripProfile: React.FC<Props> = ({
+const UserTripProfile: React.FC<Props> = ({
   message,
   name,
   age,
@@ -27,7 +25,7 @@ const TripProfile: React.FC<Props> = ({
   picture
 }) => {
   return (
-    <div className="TripProfile">
+    <>
       <Quote message={message} />
       <Profile
         name={name}
@@ -38,8 +36,8 @@ const TripProfile: React.FC<Props> = ({
         noOfreviews={noOfreviews}
         picture={picture}
       />
-    </div>
+    </>
   );
 };
 
-export default TripProfile;
+export default UserTripProfile;

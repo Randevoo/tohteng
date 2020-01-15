@@ -1,7 +1,7 @@
 import React from "react";
 import TripHeader from "./components/TripHeader";
 import TripDay from "./components/TripDay";
-import TripProfie from "../Profile/components/TripProfile";
+import TripProfie from "../User";
 import {
   Button,
   NavBar,
