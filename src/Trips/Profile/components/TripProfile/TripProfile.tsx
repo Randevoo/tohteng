@@ -1,7 +1,7 @@
 import React from "react";
 
-import Quote from "../Quotes"
-import Profile from "../User"
+import Quote from "../Quotes";
+import Profile from "../User";
 
 import "./TripProfile.less";
 
@@ -16,17 +16,28 @@ interface Props {
   picture: string;
 }
 
-const TripProfile: React.FC<Props> = ({ message, name, age, gender, languages, rating, noOfreviews, picture }) => {
+const TripProfile: React.FC<Props> = ({
+  message,
+  name,
+  age,
+  gender,
+  languages,
+  rating,
+  noOfreviews,
+  picture
+}) => {
   return (
     <div className="TripProfile">
       <Quote message={message} />
-      <Profile name={name}
-            age={age}
-            gender={gender}
-            languages={languages}
-            rating={rating}
-            noOfreviews={noOfreviews}
-            picture={picture} />
+      <Profile
+        name={name}
+        age={age}
+        gender={gender}
+        languages={languages}
+        rating={rating}
+        noOfreviews={noOfreviews}
+        picture={picture}
+      />
     </div>
   );
 };

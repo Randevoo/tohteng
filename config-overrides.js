@@ -9,7 +9,7 @@ const getModulePath = module => path.resolve(__dirname, "src", module);
 
 module.exports = override(
   fixBabelImports("import", {
-    libraryName: "antd",
+    libraryName: "antd-mobile",
     libraryDirectory: "es",
     style: true
   }),
@@ -31,9 +31,10 @@ module.exports = override(
         loader: "less-loader", // compiles Less to CSS
         options: {
           modifyVars: {
-            "primary-color": "#e66673"
+            "brand-primary": "#e66673"
           },
-          javascriptEnabled: true
+          javascriptEnabled: true,
+          include: /node_modules/
         }
       }
     ]
