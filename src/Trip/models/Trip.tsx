@@ -11,6 +11,7 @@ interface TripDay {
   img: string;
   description: string;
   dayNumber: number;
+  cost: number;
 }
 
 export default Trip;

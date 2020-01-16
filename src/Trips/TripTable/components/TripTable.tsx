@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { withRouter, useHistory } from "react-router";
+import { withRouter } from "react-router";
 import { ListView } from "antd-mobile";
-import { History } from "history";
 import Trip from "Trip/models/Trip";
 
 import "./TripTable.css";
@@ -17,22 +16,28 @@ const createTestData = () => ({
   tripDays: []
 });
 
-const renderCard = (data: Trip) => (
-  <TripsCard
-    title={data.title}
-    type={data.type}
-    cost={"160"}
-    img={
-      "https://www.planetware.com/photos-large/JPN/japan-kyoto-fushimi-inari-taisha-shrine.jpg"
-    }
-    reviewNo={279}
-  />
-);
 const testData = [createTestData(), createTestData(), createTestData()];
+
+const renderCard = (
+  rowData: any,
+  sectionId: React.ReactText,
+  rowId: React.ReactText
+) => {
+  const data = testData[rowId as number];
+  return (
+    <TripsCard
+      title={data.title}
+      type={data.type}
+      cost={"160"}
+      imgUrls={data.imgUrls}
+      reviewNo={279}
+    />
+  );
+};
 
 const TripTable: React.FC<TripTableProps> = () => {
   const initDataSource = new ListView.DataSource({
-    rowHasChanged: (row1: Trip, row2: Trip) => row1.title != row2.title
+    rowHasChanged: (row1: Trip, row2: Trip) => row1.title !== row2.title
   });
 
   const [dataSource, updateDataSource] = useState(initDataSource);
@@ -41,13 +46,11 @@ const TripTable: React.FC<TripTableProps> = () => {
   }, [testData]);
 
   return (
-    <div className="TripTable">
-      <ListView
-        className="TripTableList"
-        dataSource={dataSource}
-        renderRow={renderCard}
-      />
-    </div>
+    <ListView
+      className="TripTableList"
+      dataSource={dataSource}
+      renderRow={renderCard}
+    />
   );
 };
 
