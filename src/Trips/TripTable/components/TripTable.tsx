@@ -1,55 +1,51 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { withRouter, useHistory } from "react-router";
-import { List, Card, Button } from "antd";
-import "./TripTable.css";
+import { ListView } from "antd-mobile";
 import { History } from "history";
-const { Meta } = Card;
+import Trip from "Trip/models/Trip";
+
+import "./TripTable.css";
+import TripsCard from "Trips/TripsCard";
 
 export interface TripTableProps {}
 
-interface CardData {
-  history: History;
-  title: string;
-  imageUrl: string;
-  link: string;
-}
-
-const testData = (history: History) => ({
-  history,
-  title: "lol",
-  imageUrl: "lol",
-  link: "/signup"
+const createTestData = () => ({
+  imgUrls: [],
+  title: "Day Tour of Kyoto Fushimi Inari Shrine",
+  type: "Single Tour",
+  location: "Some place",
+  tripDays: []
 });
 
-const renderCard = (data: CardData) => (
-  <Card
-    actions={[<Button>LOl</Button>]}
-    onClick={() => {
-      console.log("clicked");
-      data.history.push(data.link);
-    }}
-    className="TripCard"
-    cover={
-      <img
-        alt="tripImage"
-        src="https://images2.minutemediacdn.com/image/upload/c_fill,g_auto,h_1248,w_2220/f_auto,q_auto,w_1100/v1555438068/shape/mentalfloss/istock_000001168352_small.jpg"
-      />
+const renderCard = (data: Trip) => (
+  <TripsCard
+    title={data.title}
+    type={data.type}
+    cost={"160"}
+    img={
+      "https://www.planetware.com/photos-large/JPN/japan-kyoto-fushimi-inari-taisha-shrine.jpg"
     }
-  >
-    <Meta title="Trip title" description="Trip description" />
-  </Card>
+    reviewNo={279}
+  />
 );
+const testData = [createTestData(), createTestData(), createTestData()];
 
 const TripTable: React.FC<TripTableProps> = () => {
-  const history = useHistory();
+  const initDataSource = new ListView.DataSource({
+    rowHasChanged: (row1: Trip, row2: Trip) => row1.title != row2.title
+  });
+
+  const [dataSource, updateDataSource] = useState(initDataSource);
+  useEffect(() => {
+    updateDataSource(dataSource.cloneWithRows(testData));
+  }, [testData]);
+
   return (
     <div className="TripTable">
-      <List
+      <ListView
         className="TripTableList"
-        itemLayout="vertical"
-        bordered={true}
-        dataSource={[testData(history), testData(history), testData(history)]}
-        renderItem={renderCard}
+        dataSource={dataSource}
+        renderRow={renderCard}
       />
     </div>
   );

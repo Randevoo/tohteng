@@ -4,22 +4,18 @@ import { Icon } from "antd";
 import { Card, WingBlank, WhiteSpace, Flex } from "antd-mobile";
 
 import "./TripsCard.less";
+import { useHistory } from "react-router";
 
 interface Props {
   title: string;
-  description: string;
+  type: string;
   cost: string;
   img: string;
   reviewNo: number;
 }
 
-const TripsCard: React.FC<Props> = ({
-  title,
-  description,
-  cost,
-  img,
-  reviewNo
-}) => {
+const TripsCard: React.FC<Props> = ({ title, type, cost, img, reviewNo }) => {
+  let history = useHistory();
   return (
     <WingBlank>
       <Card>
@@ -29,7 +25,7 @@ const TripsCard: React.FC<Props> = ({
           <WhiteSpace />
           <span>{`S$${cost} per pax`}</span>
           <WhiteSpace />
-          <span>{description}</span>
+          <span>{type}</span>
           <WhiteSpace />
           <Flex justify="between">
             <span>{`${reviewNo} Reviews`}</span>
