@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { withRouter } from "react-router";
-import { ListView } from "antd-mobile";
+import { withRouter, useHistory, RouteComponentProps } from "react-router";
+import { ListView, List } from "antd-mobile";
 import Trip from "Trip/models/Trip";
 
 import "./TripTable.css";
 import TripsCard from "Trips/TripsCard";
+const { Item } = List;
 
 export interface TripTableProps {}
 
@@ -28,24 +29,27 @@ const testData = [
 ];
 
 const renderCard = (
+  history: RouteComponentProps,
   rowData: any,
   sectionId: React.ReactText,
   rowId: React.ReactText
 ) => {
   const data = testData[rowId as number];
-  console.log(rowData);
   return (
-    <TripsCard
-      title={data.title}
-      type={data.type}
-      cost={"160"}
-      imgUrls={data.imgUrls}
-      reviewNo={279}
-    />
+    <Item>
+      <TripsCard
+        title={data.title}
+        type={data.type}
+        cost={"160"}
+        imgUrls={data.imgUrls}
+        reviewNo={279}
+      />
+    </Item>
   );
 };
 
 const TripTable: React.FC<TripTableProps> = () => {
+  const history = useHistory();
   const initDataSource = new ListView.DataSource({
     getRowData: (dataBlob: any, sectionId: number, rowId: number) =>
       dataBlob[rowId],
@@ -61,8 +65,9 @@ const TripTable: React.FC<TripTableProps> = () => {
     <ListView
       className="TripTableList"
       dataSource={dataSource}
-      renderRow={renderCard}
-      // initialListSize={3}
+      renderRow={(rowData, sectionId, rowId) =>
+        renderCard(history, rowData, sectionId, rowId)
+      }
       useBodyScroll
     />
   );
