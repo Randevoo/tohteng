@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { withRouter, useHistory, RouteComponentProps } from "react-router";
+import { History } from "history";
+import { withRouter, useHistory } from "react-router";
 import { ListView, List } from "antd-mobile";
 import Trip from "Trip/models/Trip";
 
@@ -29,7 +30,7 @@ const testData = [
 ];
 
 const renderCard = (
-  history: RouteComponentProps,
+  history: History,
   rowData: any,
   sectionId: React.ReactText,
   rowId: React.ReactText
