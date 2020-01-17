@@ -27,7 +27,7 @@ const TripsCard: React.FC<Props> = ({
       <Card>
         <Card.Header title={title} />
         <Card.Body>
-          <Carousel autoplay>
+          <Carousel className="TripImageCarousel" autoplay>
             {imgUrls.map(url => (
               <img src={url} alt="tripPhotos"></img>
             ))}
