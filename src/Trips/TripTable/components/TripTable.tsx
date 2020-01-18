@@ -6,7 +6,7 @@ import Trip from "Trip/models/Trip";
 
 import "./TripTable.css";
 import TripsCard from "Trips/TripsCard";
-const { Item } = List;
+const Item = List.Item;
 
 export interface TripTableProps {}
 
@@ -37,7 +37,12 @@ const renderCard = (
 ) => {
   const data = testData[rowId as number];
   return (
-    <Item>
+    <Item
+      arrow="horizontal"
+      onClick={() => {
+        console.log("Item clicked");
+      }}
+    >
       <TripsCard
         title={data.title}
         type={data.type}

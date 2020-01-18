@@ -4,7 +4,6 @@ import { Icon } from "antd";
 import { Card, WingBlank, WhiteSpace, Flex, Carousel } from "antd-mobile";
 
 import "./TripsCard.less";
-import { useHistory } from "react-router";
 
 interface Props {
   title: string;
@@ -21,7 +20,6 @@ const TripsCard: React.FC<Props> = ({
   imgUrls,
   reviewNo
 }) => {
-  let history = useHistory();
   return (
     <WingBlank>
       <Card>

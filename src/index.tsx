@@ -10,7 +10,6 @@ import Menu from "./Menu";
 import * as serviceWorker from "./serviceWorker";
 import Search from "./Search";
 import TripsTable from "./Trips/TripTable/components/TripTable";
-import { WingBlank } from "antd-mobile";
 
 const graphqlClient = new ApolloClient({
   uri: "https://angjigao.herokuapp.com/"
